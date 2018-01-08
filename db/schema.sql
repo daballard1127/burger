@@ -9,7 +9,7 @@ CREATE TABLE burgers
 (
 id int  AUTO_INCREMENT  NOT NULL,
 burger_name varchar(255) NOT NULL,
-devoured Boolean, Not Null Default '0',
-"Date" TIMESTAMP,
+devoured Boolean NOT NULL,
+`Date` TimeStamp NOT NULL,
 PRIMARY KEY (id)
 )
