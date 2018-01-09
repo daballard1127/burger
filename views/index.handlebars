@@ -10,7 +10,7 @@
   <h2>Burgers Available!</h2>
   <div class="col-lg-4">
 <ol>
-  {{#each burger}}
+  {{#each burgers}}
     {{#unless this.devoured}}
     <li>
       {{this.burger_name}}
@@ -27,16 +27,15 @@
 <h2>Burgers that are devoured!</h2>
 <div class="col-lg-4">
 <ol>
-  {{#each burger}}
-    {{#if this.devoured}}
+  {{#each burgers}}
+    {{#unless this.devoured}}
     <li>
-      {{this.name}}
+      {{this.burger_name}}
      <form action="/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devour" value="false">
+          <input type="hidden" name="devoured" value="false">
         </form>
       </li>
-      {{!-- {{> burgers/burgers-block devoured=1}} --}}
-    {{/if}}
+    {{/unless}}
   {{/each}}
 </ol>
 </div>
