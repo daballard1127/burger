@@ -6,6 +6,7 @@ var router = express.Router();
 var burger = require("../models/burger.js");
 
 // Create all our routes and set up logic within those routes where required.
+// Get routes connects to database and gets a list of burgers and renders the data using default html
 router.get("/", function(request, result) {
     burger.all(function(data) {
         var hbsObject = {
@@ -15,8 +16,8 @@ router.get("/", function(request, result) {
         result.render("index", hbsObject);
     });
 });
-
-router.post("/api/burgers", function(request, result) {
+// Post routes collect burger information and adds it to the database
+router.post("/", function(request, result) {
     burger.create([
         "burger_name"
     ], [
@@ -25,14 +26,15 @@ router.post("/api/burgers", function(request, result) {
         result.redirect("/");
     });
 });
-router.put("/api/burgers/:id", function(request, result) {
+// Edit whether the burger is eaten or not
+router.put("/:id", function(request, result) {
     var condition = "id = " + request.params.id;
     console.log("condition", condition);
-    burger.update({
-        devoured: request.body.devoured
-    }, condition, function() {
-        result.redirect("/");
-    });
+    // burger.update({
+    //     devoured: request.body.devoured
+    // }, condition, function() {
+    //     result.redirect("/");
+    // });
 });
 
 // Export routes for server.js to use.
