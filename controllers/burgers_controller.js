@@ -17,24 +17,31 @@ router.get("/", function(request, result) {
     });
 });
 // Post routes collect burger information and adds it to the database
-router.post("/", function(request, result) {
+router.post("api/burger", function(request, result) {
     burger.create([
-        "burger_name"
+        "burger_name", "devoured"
     ], [
-        request.body.name
-    ], function() {
-        result.redirect("/");
+        request.body.burger_name, request.body.devoured
+    ], function(result) {
+        res.json({ id: result.insertId });
     });
 });
 // Edit whether the burger is eaten or not
-router.put("/:id", function(request, result) {
-    var condition = "id = " + request.params.id;
+router.put("/api/cats/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+  
     console.log("condition", condition);
-    // burger.update({
-    //     devoured: request.body.devoured
-    // }, condition, function() {
-    //     result.redirect("/");
-    // });
+  
+    burger.update({
+      devoured: req.body.devoured
+    }, condition, function(result) {
+      if (result.changedRows == 0) {
+        // If no rows were changed, then the ID must not exist, so 404
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
 });
 
 // Export routes for server.js to use.

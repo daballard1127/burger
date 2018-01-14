@@ -14,9 +14,10 @@
     {{#unless this.devoured}}
     <li>
       {{this.burger_name}}
-       <form >
+       
+              <form action="/{{this.id}}">
               <input type="hidden" name="devoured" value="true">
-              <button data-id = "{{this.id}}" type="submit" class="btn btn-success">Devour it!</button>
+              <button type="submit">Devour it!</button>
             </form>
           </li>
     {{/unless}}
@@ -31,7 +32,7 @@
     {{#if this.devoured}}
     <li>
       {{this.burger_name}}
-     <form action="/{{this.id}}" method="PUT">
+     <form action="/{{this.id}}">
           <input type="hidden" name="devoured" value="false">
         </form>
       </li>
@@ -46,12 +47,12 @@
     <form class="create-form">
 
       <div class="form-group">
-        <label for="ca">Hamburger:</label>
-        <input type="text" id="ca" name="name">
+        <label for="burg">Hamburger:</label>
+        <input type="text" id="burg" name="burger_name">
       </div>
 
       <div class="form-group">
-        <label for="slee">Devoured?</label><br>
+        <label for="devo">Devoured?</label><br>
         <input type="radio" name="devoured" value="1" checked> Devoured!<br>
         <input type="radio" name="devoured" value="0"> Not Eaten
       </div>
