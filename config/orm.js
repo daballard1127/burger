@@ -45,15 +45,15 @@ function objToSql(ob) {
 // ORM
 // =============================================================
 
-var tableName = "burgers";
+// var tableName = "burgers";
 
 var orm = {
 
   // Here our ORM is creating a simple method for performing a query of the entire table.
   // We make use of the callback to ensure that data is returned only once the query is done.
-  all: function(tableName,callback) {
-    var string = "SELECT * FROM " + tableName + ";";
-    console.log("Query", string);
+  all: function(tableInput,callback) {
+    var string = "SELECT * FROM " + tableInput + ";";
+    // console.log("Query", string);
     connection.query(string, function(err, result) {
       if (err) {
         throw err;
@@ -72,7 +72,7 @@ var orm = {
     queryString += printQuestionMarks(vals.length);
     queryString += ") ";
 
-    console.log(queryString);
+    // console.log(queryString);
 
     connection.query(queryString, vals, function(err, result) {
       if (err) {
@@ -91,7 +91,7 @@ var orm = {
     queryString += " WHERE ";
     queryString += condition;
 
-    console.log(queryString);
+    // console.log(queryString);
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
@@ -99,7 +99,7 @@ var orm = {
 
       cb(result);
     });
-  },
+  }
 };
 
 module.exports = orm;

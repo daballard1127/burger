@@ -8,37 +8,29 @@
 
 <div class="row">
   <h2>Burgers Available!</h2>
-  <div class="col-lg-4">
-<ol>
+  <div class="col-lg-4"> 
+     
+  <li>
   {{#each burgers}}
     {{#unless this.devoured}}
-    <li>
-      {{this.burger_name}}
-       
-              <form action="/{{this.id}}">
-              <input type="hidden" name="devoured" value="true">
-              <button type="submit">Devour it!</button>
-            </form>
-          </li>
+       {{> burger/burger-block devoured=true}}
     {{/unless}}
   {{/each}}
-</ol>
+</li>
 </div>
 
 <h2>Burgers that are devoured!</h2>
 <div class="col-lg-4">
-<ol>
+  <li>
   {{#each burgers}}
     {{#if this.devoured}}
-    <li>
-      {{this.burger_name}}
-     <form action="/{{this.id}}">
-          <input type="hidden" name="devoured" value="false">
-        </form>
-      </li>
+    
+      
+    {{> burger/burger-block devoured=false}}
+      
     {{/if}}
   {{/each}}
-</ol>
+  </li>
 </div>
 </div>
 </div>
@@ -53,8 +45,9 @@
 
       <div class="form-group">
         <label for="devo">Devoured?</label><br>
-        <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-        <input type="radio" name="devoured" value="0"> Not Eaten
+        <input type="radio" name="devoured" value="0" checked> Devoured!<br>
+        <input type="radio" name="devoured" value="1" > Not Eaten!<br>
+      
       </div>
 
       <button type="submit">Add Hamburger</button>

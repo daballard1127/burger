@@ -12,12 +12,12 @@ router.get("/", function(request, result) {
         var hbsObject = {
             burgers: data
         };
-        console.log(hbsObject);
+        // console.log(hbsObject);
         result.render("index", hbsObject);
     });
 });
 // Post routes collect burger information and adds it to the database
-router.post("api/burger", function(request, result) {
+router.post("/api/burgers", function(request, result) {
     burger.create([
         "burger_name", "devoured"
     ], [
@@ -27,10 +27,10 @@ router.post("api/burger", function(request, result) {
     });
 });
 // Edit whether the burger is eaten or not
-router.put("/api/cats/:id", function(req, res) {
+router.put("/api/burgers/:id", function(req, result) {
     var condition = "id = " + req.params.id;
   
-    console.log("condition", condition);
+    // console.log("condition", condition);
   
     burger.update({
       devoured: req.body.devoured
